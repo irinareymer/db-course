@@ -33,12 +33,11 @@ VALUES (1, 3),
 (4, 4);
 
 INSERT INTO collection (id, name)
-VALUES (1, 'BANG!'),
-(2, 'Carcassonne');
+VALUES (1, 'Carcassonne');
 
 INSERT INTO collection_intersection (collection_id, game_id)
-VALUES (2, 1),
-(2, 2);
+VALUES (1, 1),
+(1, 2);
 
 INSERT INTO category (id, name)
 VALUES (1, 'family'),
