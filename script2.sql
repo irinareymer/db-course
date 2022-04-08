@@ -1,8 +1,8 @@
 INSERT INTO "user" (id, email, password, username, date_of_birth )
-VALUES (1, 'rinirey@yandex.ru', 'strongPassword', 'rinirey', '2001-03-04'),
-(2, 'masha@yandex.ru', 'mashaPassword', 'masha', '2000-03-08'),
-(3, 'vera@gmail.com', 'veraPass', 'verra', '1998-05-25'),
-(4, 'marry2@gmail.com', 'mySecretPassword2', 'marry', '1989-04-04');
+VALUES (1, 'rinirey@yandex.ru', 'b0bda564df1a5aea0011aae040799dc2f1cdbc4f623e8e320efc90374eaa730e', 'rinirey', '2001-03-04'),
+(2, 'masha@yandex.ru', '0f4f4d2d3439226e2dc310f7e76f01152814f38dd421d03200a2c62fbb349abb', 'masha', '2000-03-08'),
+(3, 'vera@gmail.com', '90db24b9de8095ca0b80630bf82748c238614ea0b4c30ac15525052c667b9c41', 'verra', '1998-05-25'),
+(4, 'marry2@gmail.com', '7c974f9eb4887c3655129fcf32054800d8b8c61be047ebd52ae72bfc0ee60ed2', 'marry', '1989-04-04');
 
 INSERT INTO "order" (id, date_of_order, order_price, status, user_id)
 VALUES (1, '2022-04-01', 1300, 'in progress', 1),
@@ -51,3 +51,11 @@ VALUES (1, 4),
 (1, 2),
 (2, 4),
 (3, 3);
+
+INSERT INTO sale (name, discount, start, finish)
+VALUES ('Carcassonne30', 30, '2022-04-01', '2022-04-30'),
+('Ghost5', 5, '2022-03-01', '2022-05-31');
+
+INSERT INTO sale_intersection (sale_id, commerce_id)
+VALUES (1, 1),
+(2, 3);
