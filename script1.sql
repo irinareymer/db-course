@@ -99,3 +99,23 @@ FOREIGN KEY (game_id)
 REFERENCES board_game (id)
 ON DELETE CASCADE,
 CONSTRAINT collection_intersection_pkey PRIMARY KEY (collection_id, game_id));
+
+CREATE TABLE sale
+(id serial PRIMARY KEY,
+name text NOT NULL,
+discount integer NOT NULL,
+CONSTRAINT valid_discount CHECK (discount > 0 AND discount <= 100),
+start date NOT NULL,
+finish date NOT NULL,
+CONSTRAINT valid_date CHECK (start < finish));
+
+CREATE TABLE sale_intersection
+(sale_id integer,
+FOREIGN KEY (sale_id)
+REFERENCES sale (id)
+ON DELETE CASCADE,
+commerce_id integer,
+FOREIGN KEY (commerce_id)
+REFERENCES commerce (id)
+ON DELETE CASCADE,
+CONSTRAINT sale_intersection_pkey PRIMARY KEY (sale_id, commerce_id));
