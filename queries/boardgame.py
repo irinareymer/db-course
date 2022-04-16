@@ -16,7 +16,7 @@ class BoardGameQuery:
 
     def select_id(self):
         self.cursor.execute("SELECT id FROM board_game")
-        game_id = self.cursor.fetchone()
+        game_id = self.cursor.fetchall()
         return game_id
 
     def select_age_limit(self, game_id):
