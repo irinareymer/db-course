@@ -38,7 +38,14 @@ INNER JOIN "user" ON "order".user_id="user".id;
 SELECT "order".id as ORDER_ID, "user".username
 FROM "order"
 RIGHT JOIN "user" ON "order".user_id="user".id;
-/*7,8*/
+/*7*/
+SELECT board_game.name as game, board_game.age_limit as age_limit, count(game_id) as game_count
+FROM cart_intersection
+INNER JOIN board_game ON cart_intersection.game_id=board_game.id
+GROUP BY game,age_limit
+HAVING age_limit <= 16
+ORDER BY game_count DESC;
+/*8*/
 SELECT game, age_limit, game_count FROM (
 	SELECT board_game.name as game, board_game.age_limit as age_limit, count(game_id) as game_count
 	FROM cart_intersection
