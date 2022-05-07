@@ -101,22 +101,18 @@
 
 3. Написать хранимую процедуру, которая переносит все игры заданной коллекции в заданную категорию (коллекция и категория – параметры хранимой процедуры), а если они уже в этой категории, то вывести сообщение об этом (RAISE NOTICE ...).
 
-Для реализации процедуры потребовался столбец id из таблицы category_intersection. Добавим его:
-
-`ALTER TABLE category_intersection ADD COLUMN id SERIAL;`
-
-Рассмотрим реализацию на примере: коллекия - film, категория - horror. <br>
+Рассмотрим реализацию на примере: коллекия - fall, категория - horror. <br>
 Обратимся к таблицам **collection, category и collection_intersection**:
 
 ![collection](results/collection.jpg)
 ![category](results/category.jpg)
 ![collection_intersection](results/collection_intersection.jpg)
 
-Таким образом, в категорию попадают игры с id 4, 7, 8. Рассмотрим, к каким категориям они относятся изначально по таблице **category_intersection**:
+Таким образом, в категорию попадают игры с id 7, 8, 9. Рассмотрим, к каким категориям они относятся изначально по таблице **category_intersection**:
 
 ![category_intersection_1](results/category_intersection_before.jpg)
 
-По таблице видно, что игра 7 уже принадлежит категории horror (5).
+По таблице видно, что игра 8 уже принадлежит категории horror (5).
 
 Работа процедуры:
 
@@ -126,7 +122,7 @@
 
 ![category_intersection_2](results/category_intersection_after.jpg)
 
-Действительно, игры 4, 7 и 8 (из коллеции film) принадлежат категории 5 (horror).
+Действительно, игры 7, 8 и 9 (из коллеции fall) принадлежат категории 5 (horror).
 
 Поробуем вновь вызвать процедуру:
 
