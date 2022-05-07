@@ -32,18 +32,18 @@ CREATE OR REPLACE PROCEDURE CategoryUpdate(categ text, collect text) AS $$
     DECLARE
     categ_id INT;
     collect_id INT;
-    iter INT;
-    i INT;
+    t_row category_intersection%rowtype;
     BEGIN
     SELECT id INTO categ_id FROM category WHERE name = categ;
     SELECT id INTO collect_id FROM collection WHERE name = collect;
     CREATE TEMP TABLE game_ids ON COMMIT DROP AS SELECT game_id FROM collection_intersection WHERE collection_id = collect_id;
- 	SELECT count(game_id) INTO iter FROM category_intersection;
-    FOR i in 1..iter LOOP
-        if (SELECT category_id = categ_id FROM category_intersection WHERE game_id IN (SELECT game_id FROM game_ids) AND id = i) then
+    FOR t_row in SELECT * FROM category_intersection LOOP
+        if (SELECT category_id = categ_id FROM category_intersection 
+            WHERE game_id IN (SELECT game_id FROM game_ids) AND category_id = t_row.category_id AND game_id = t_row.game_id) then
             RAISE NOTICE 'Game is already in the category!';
         else
-            UPDATE category_intersection SET category_id = categ_id WHERE game_id IN (SELECT game_id FROM game_ids) AND id = i;
+            UPDATE category_intersection SET category_id = categ_id 
+            WHERE game_id IN (SELECT game_id FROM game_ids) AND category_id = t_row.category_id AND game_id = t_row.game_id;
         end if;
     end LOOP;
     END $$ LANGUAGE plpgsql;
