@@ -1,12 +1,11 @@
 import datetime
 import random
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
-from generators import User, Order, Feedback, BoardGame, Category, Collection, Commerce, Sale
+from lab2.generators import User, Order, Feedback, BoardGame, Category, Collection, Commerce, Sale
 from queries import UserQuery, OrderQuery, FeedbackQuery, BoardGameQuery, CategoryQuery, CollectionQuery, CommerceQuery, \
     SaleQuery, SaleIntersectionQuery, CategoryIntersectionQuery, CartIntersectionQuery, CollectionIntersectionQuery
 import psycopg2
 import argparse
-from psycopg2 import errors
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
